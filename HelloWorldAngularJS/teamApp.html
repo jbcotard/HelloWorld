@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Angular Team App</title>
+<link href="http://necolas.github.io/normalize.css/3.0.2/normalize.css"
+	rel="stylesheet" media="screen" />
+<!-- <link href="css/main.css" rel="stylesheet" media="screen"/> -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+<script src="scripts/teamAppModule.js"></script>
+</head>
+<body data-ng-app="myTeamApp">
+	<section data-ng-controller="teamCtrl">
+		<h1 data-ng-bind="pageTitle"></h1>
+		<div class="people">
+		<form>
+		<label>person:</label>
+		<input data-ng-model="name"/>
+		<button data-ng-click="add(name)">Add Person</button>
+		</form>
+		<ul>
+		<li data-ng-repeat="person in people">
+		<h2>{{person}}</h2>
+		<button data-ng-click="remove($index)">delete</button>
+		</li>
+		</ul>
+		</div>
+		
+		
+		<div class="teams" data-ng-show="people.length > 0" >
+		<form>
+		<label>Number of teams:</label>
+		<input type="number" data-ng-model="teamNumber"/>
+		<button data-ng-click="generateTeams(teamNumber)">Create teams</button>
+		</form>
+		<div data-ng-repeat="team in teams">
+		<h3>Team {{$index + 1}}</h3>
+		<ul>
+		<li data-ng-repeat="person in team">
+		{{person}}
+		</li>
+		</ul>
+		</div>
+		
+		<button data-ng-show="teams.length > 0" data-ng-click="resetTeams()">Reset teams</button>
+		</div>
+		
+		
+	</section>
+</body>
+</html>
